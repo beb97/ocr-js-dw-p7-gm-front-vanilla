@@ -22,20 +22,23 @@
 <body>
   <!-- https://getbootstrap.com/docs/5.0/examples/headers/ -->
   <header class="">
-    <h1><a href="index.html" class="">Groupomania</a></h1>
-    <nav>
-      <ul class="nav">
-        <li> <a href="index.html" class="nav-link"><i class="fas fa-pen-nib"></i> Posts</a> </li>
-        <li> <a href="/"  class="nav-link"><i class="fa fa-letter"></i> Log in</a> </li>
-        <li> <a href="/"  class="nav-link"><i class="fa fa-letter"></i> Log out</a> </li>
-      </ul>
-    </nav>
+
   </header>
-  <main class="">
-    <section class="">
-      <div id="back-to-top">
+  <main>
+    <div id="infos">
+      <template id="toast">
+        <div class="toast">
+          <!-- hello -->
+          <div class="toast-message"></div>
+          <div class="toast-url"></div>
+          <div class="toast-close" onclick="closeToast(event)">x</div>
+        </div>
+      </template>
+    </div>
+    <section>
+      <!-- <div id="back-to-top">
         ^
-      </div>
+      </div> -->
 
 
       <a href="post.html">
@@ -48,21 +51,24 @@
         </div>
       </a>
 
-      <div id="template" class="card" id="">
-        <!--      https://getbootstrap.com/docs/4.0/components/card/-->
-        <img src="https://via.placeholder.com/100" class="card-img-top" alt="placeholder">
-        <div class="card-body">
-          <h2>Titre</h2>
-          <p class="message">Contenu du message</p>
-        </div>
-        <div class="card-footer">
-          <div class="commentaires">3 commentaires</div>
-          <div class="">
-            <a href="user.html" class="author card-link text-decoration-none">Pierre Bébon</a>
-            <span class="date">01/07/2022</span>
+      <template id="card">
+        <div class="card">
+          <!--      https://getbootstrap.com/docs/4.0/components/card/-->
+          <img src="https://via.placeholder.com/100" class="card-img-top" alt="placeholder">
+          <div class="card-body">
+            <h2>Titre</h2>
+            <!-- <p class="message">Message</p> -->
+          </div>
+          <div class="card-footer">
+            <div class="commentaires">X commentaires</div>
+            <div class="">
+              <a href="user.html" class="author">Author</a>
+              <span class="date">01/01/2000</span>
+            </div>
           </div>
         </div>
-      </div>
+      </template>
+
     </section>
 
   </main>
