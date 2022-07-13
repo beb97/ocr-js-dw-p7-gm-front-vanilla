@@ -4,6 +4,7 @@ const urlGetPosts = urlApi+'/post';
 //     let clone = template.cloneNode("true");
 //     ancre.appendChild(clone);
 // }
+checkIfLogged();
 
 (async () => {
 
@@ -23,10 +24,18 @@ const urlGetPosts = urlApi+'/post';
 
 function createPosts(posts) {
     console.log(posts)
+    posts.sort(triPosts)
     for(let post of posts) {
         createPost(post);
     }
     // document.querySelector("#item-template").remove();
+}
+
+function triPosts(a,b) {
+    if(a.createdAt > b.createdAt) return -1;
+    if(a.createdAt < b.createdAt) return 1;
+    return 0;
+
 }
 
 function createPost(item) {
@@ -38,10 +47,15 @@ function createPost(item) {
     // tableClone.getElementsByClassName("item-link")[0].setAttribute("href", "/");
     clone.querySelector("h2").innerHTML = item.titre;
     // clone.querySelector(".message").innerHTML = item.message;
-    clone.querySelector(".date").innerHTML = new Date(item.createdAt).toLocaleDateString("fr") ;
-    clone.querySelector(".author").innerHTML = item.user.email;
-    clone.querySelector(".author").setAttribute("href", "user.html?user="+item.user.id);
+    clone.querySelector(".date").innerHTML = timeSince(new Date(item.createdAt)) ;
+    // clone.querySelector(".date").innerHTML = new Date(item.createdAt).toLocaleDateString("fr") ;
+    clone.querySelector(".author").innerHTML = item.user.pseudo;
+    clone.querySelector(".author").setAttribute("href", "user.html?id="+item.user.id);
     // tableClone.getElementsByClassName("img")[0].setAttribute("src", "/");
+
+    clone.querySelector(".card").addEventListener("click", function(){
+        window.location.href = "post.html?id="+item.id;
+    });
 
     // document.getElementById("item-list").appendChild(tableClone);
     ancre.appendChild(clone);

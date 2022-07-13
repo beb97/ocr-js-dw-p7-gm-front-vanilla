@@ -33,26 +33,50 @@
     <main class="">
         <div id="infos">
             <template id="toast">
-              <div class="toast">
-                <!-- hello -->
-                <div class="toast-message"></div>
-                <div class="toast-url"></div>
-                <div class="toast-close" onclick="closeToast(event)">x</div>
-              </div>
+                <div class="toast">
+                    <!-- hello -->
+                    <div class="toast-message"></div>
+                    <div class="toast-url"></div>
+                    <div class="toast-close" onclick="closeToast(event)">x</div>
+                </div>
             </template>
-          </div>
-        <h2>
-            Nouveau post
-        </h2>
-        <form>
-            <div class="">
-                <label for="titre" class="">Titre</label>
-                <input type="text" class="" id="titre" value="titre" name="titre">
-                <label for="message" class="">Message</label>
-                <input type="text" class="" id="message" value="message" name="message">
+        </div>
+
+        <fieldset>
+            <legend id="titre">
+            </legend>
+            <div class="field" id="message"> </div>
+            <div id="extra">
+                <a href="user.html"><span id="author">hello</span></a>
+                <span id="date">hello</span>
             </div>
-            <input type="submit" class="btn">Envoyer post</input>
-        </form>
+        </fieldset>
+
+        <fieldset id="commentaires">
+            <legend><span class="comment-count"></span> commentaires</legend>
+            <form>
+                <details class="field">
+                    <summary class="comment-add"><i class="fas fa-plus-circle"></i> Ajouter un commentaire
+                    </summary>
+                    <textarea rows="2" cols="1" class="" id="new-commentaire" value="commentaire"
+                        name="message"></textarea>
+                    <input type="hidden" name="postId" id="postId" />
+                    <br />
+                    <input type="submit" class="btn" value="Envoyer" />
+                </details>
+            </form>
+            <template id="commentaire">
+                <div class="commentaire">
+                <!-- <div class="field"> -->
+                    <div class="field comment-message">commentaire </div>
+                    <!-- </div> -->
+                    <div class="field comment-extra">
+                        <a href="user.html"><span class="comment-author">auth</span></a>, 
+                        <span class="comment-date"> date </span>
+                    </div>
+            </div>
+            </template>
+        </fieldset>
 
     </main>
     <footer class="container d-flex justify-content-center">
