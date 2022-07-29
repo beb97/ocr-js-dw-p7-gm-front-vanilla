@@ -1,23 +1,17 @@
 (() => {
     const form = document.querySelector("form");
-    const urlLogin = urlApi+"/user/login";
-    // const base_url = window.location.origin;
-    // const host = window.location.host;
-    // const href = window.location.href;
-    // const base_url = href.substring(0, href.lastIndexOf("/"));
-    // debugger
-    displayToast({
-        message:"Vous n'avez pas de compte ?", 
-        url:"<a href='signup.html'>inscrivez-vous</a>",
-        color: "#e9eef6"
-    });
+
+    // displayToast({
+    //     message:"Vous n'avez pas de compte ?", 
+    //     url:"<a href='signup.html'>inscrivez-vous</a>",
+    //     color: "#e9eef6"
+    // });
 
     form.onsubmit = (e => {
         e.preventDefault();
         const formData = new FormData(form);
-        // console.log([...formData])
 
-        fetch(urlLogin, {
+        fetch(urlApiUserLogin, {
             method: 'POST',
             headers: {
                 "Content-type": "application/json",
@@ -40,9 +34,14 @@
             console.log(json);
             displayToast({message:"login ok"});
             localStorage.setItem("expires", json.expires)
-            localStorage.setItem("token", json.token)
-            localStorage.setItem("user-pseudo", json.pseudo)
-            localStorage.setItem("user-id", json.id)
+            let user = {
+                token : json.token,
+                pseudo : json.pseudo,
+                id : json.id,
+                isAdmin : json.isAdmin
+            }
+            localStorage.setItem("user", JSON.stringify(user));
+
             // debugger
             window.location.href = "index.html";
         })

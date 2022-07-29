@@ -24,9 +24,10 @@
   </header>
   <main class="">
     <fieldset>
-        <legend>
-          UserName
-        </legend>
+      <legend>
+        UserName
+      </legend>
+      <form>
         <div class="field">
           <label for="pseudo" class="">Pseudo :</label>
           <div class="">
@@ -45,9 +46,19 @@
             <input type="text" class="" name="date" id="date" value="" disabled="true">
           </div>
         </div>
-        <input class="btn" type="submit" value="Modifier utilisateur"/>
+        <div class="field">
+          <label for="isAdmin" class="">Administrateur ?</label>
+          <div class="">
+            <input type="checkbox" class="" name="isAdmin" id="isAdmin" value="" disabled="true">
+          </div>
+        </div>
+        <input class="btn" type="submit" value="Modifier utilisateur" />
+      </form>
+    </fieldset>
 
-      </fieldset>
+    <div class="field" id="deleteAccount">
+      <a href="delete"> delete account </a>
+    </div>
 
   </main>
   <footer class="container d-flex justify-content-center">

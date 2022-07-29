@@ -1,20 +1,12 @@
 (() => {
-    const form = document.querySelector("form");
-    const urlPost = urlApi+"/post";
-
     checkIfLogged();
-    // const base_url = window.location.origin;
-    // const host = window.location.host;
-    // const href = window.location.href;
-    // const base_url = href.substring(0, href.lastIndexOf("/"));
-    // debugger
+    
+    const form = document.querySelector("form");
     form.onsubmit = (e => {
         e.preventDefault();
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
-        // console.log([...formData])
-        const token = localStorage.getItem('token');
-        fetch(urlPost, {
+        fetch(urlApiPost, {
             method: 'POST',
             headers: {
                 "Content-type": "application/json",

@@ -1,19 +1,34 @@
 const urlApi = "http://192.168.1.12:3000";
 const urlFront = "http://192.168.1.12:4200";
 
+const urlApiPost = urlApi + "/post/";
+const urlApiComment = urlApi + "/comment/";
+const urlApiLike = urlApi + "/like/";
+
+const urlApiUser = urlApi + "/user/";
+const urlApiUserLogin = urlApiUser + "login";
+const urlApiUserSignup = urlApiUser + "signup";
+
+let user;
+let token
+if(localStorage.getItem('user')) {
+  user = JSON.parse(localStorage.getItem('user'));
+  token = user.token;
+}
+
 (() => {
-
-  // displayToast();
-
-  let pseudo = "?"
-  if (localStorage.getItem("user-pseudo")) pseudo = localStorage.getItem("user-pseudo");
 
   fetch('nav.html')
     .then(res => res.text())
     .then(text => {
       let anchor = document.querySelector("header");
       anchor.innerHTML = text;
-      document.querySelector("#avatar").innerHTML = pseudo.substring(0, 1);
+      if(isLoggedIn()) {
+        document.querySelector("#avatar").innerHTML = user.pseudo.substring(0, 1);
+        document.querySelector("#avatar").setAttribute("title", user.pseudo);
+        const userLink = "/user.html?id=" + user.id;
+        document.querySelector("#nav-user").setAttribute("href", userLink);
+      }
 
       document.querySelectorAll("[data-hidden-when=logedin]").forEach(element => {
         if (isLoggedIn()) { element.classList.add("hidden") };
@@ -25,13 +40,18 @@ const urlFront = "http://192.168.1.12:4200";
 })()
 
 function isLoggedIn() {
-  return localStorage.getItem("token") ? true : false;
+  return user ? true : false;
+}
+
+function isOwner(userId) {
+  if (!isLoggedIn) return false;
+  if(user.isAdmin) return true;
+  return user.id == userId;
 }
 
 function logout() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("expires");
   localStorage.removeItem("user");
+  localStorage.removeItem("expires");
   window.location.href = "login.html";
 }
 
@@ -115,9 +135,9 @@ function displayToast(toast) {
 
 function closeToast(e) {
   console.log("closing");
-  e.target.closest(".toast").style.opacity=0;
+  e.target.closest(".toast").style.opacity = 0;
   setTimeout(function () {
-        e.target.closest(".toast").remove();
-}, 500);
-  
+    e.target.closest(".toast").remove();
+  }, 500);
+
 }

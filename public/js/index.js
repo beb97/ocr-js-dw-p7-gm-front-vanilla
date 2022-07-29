@@ -1,16 +1,9 @@
 const urlGetPosts = urlApi+'/post';
 
-// for (let i=0; i<copies; i++) {
-//     let clone = template.cloneNode("true");
-//     ancre.appendChild(clone);
-// }
 checkIfLogged();
-
 (async () => {
-
     // https://stackoverflow.com/questions/34558264/fetch-api-with-cookie
-    const token = localStorage.getItem('token');
-    const posts = await fetch(urlGetPosts, {
+    const posts = await fetch(urlApiPost, {
         // credentials: "include"
         method: "get",
         headers: {

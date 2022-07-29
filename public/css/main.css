@@ -1,14 +1,36 @@
 * {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+/** darkmode */
+
 
 :root {
-  --bg-light: #e9eef6;
-  --bg-medium: #EAEAEA;
-  --bg-dark: #353535;
+  /* --bg-light: #000000;
+  --bg-medium: #e9eef6;
+  --bg-dark: #ffffff;
   --color-primary: #0d6efd;
   --color-secondary: #e9eef6;
-  --color-tertiary: #99E2D0;
+  --color-tertiary: #000000; */
+}
+
+/** lightmode */
+:root {
+  /* --bg-light: #ffffff;
+  --bg-medium: #e9eef6;
+  --bg-dark: #0d6efd;
+  --color-primary: #0d6efd;
+  --color-secondary: #e9eef6;
+  --color-tertiary: #000000; */
+}
+
+/** groupo */
+:root {
+  --bg-light: #ffffff;
+  --bg-medium: #FFD7D7;
+  --bg-dark: #4E5166;
+  --color-primary: #FD2D01;
+  --color-secondary: #e9eef6;
+  --color-tertiary: #4E5166;
 }
 
 
@@ -16,6 +38,8 @@ html,
 body {
   height: 100%;
   margin: 0;
+  background-color: var(--bg-light);
+  color: var(--color-tertiary);
 }
 
 body {
@@ -34,7 +58,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1em;
-  background-color: var(--bg-light);
+  background-color: var(--bg-medium);
   margin-bottom: 1em;
 }
 
@@ -61,7 +85,7 @@ section {
   row-gap: 1em;
   column-gap: 1em;
   flex-shrink: 1;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 footer {
@@ -69,7 +93,7 @@ footer {
   display: flex;
   justify-content: center;
   margin-top: 1em;
-  background-color: var(--bg-light);
+  background-color: var(--bg-medium);
 
   margin-top: auto;
 }
@@ -112,27 +136,33 @@ form {
 
 input[type=submit] {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--bg-light);
   padding: 0.5em 1em;
   border-radius: 0.3em;
   border: 0px;
-  box-shadow: 1px 1px black;
+  box-shadow: 1px 1px var(--color-tertiary);
 }
 
 .nav-link {
   text-decoration: none;
-  color: black;
+  color: var(--color-primary);
 }
 
+li:hover .nav-link {
+  color: var(--color-secondary);
+}
+
+
+
 #avatar {
-  background-color: #0d6efd;
-  border: 1px solid blue;
+  background-color:var(--color-primary);
+  border: 1px solid var(--color-primary);
   display: inline-block;
   text-align: center;
   line-height: 1.5em;
   width: 30px;
   height: 30px;
-  color: white;
+  color: var(--bg-light);
   border-radius: 50%;
 }
 
@@ -149,7 +179,7 @@ a #new-post {
 
 #new-post {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--bg-light);
   padding: 0.3em;
 }
 
@@ -166,10 +196,27 @@ a #new-post {
 
 .field {
   border-radius: 0.3em;
-  border: 1px solid var(--color-primary);
-  background-color: var(--bg-light);
+  /* border: 1px solid var(--color-tertiary); */
+  background-color: var(--bg-medium);
   padding: 1em;
   margin-bottom: 1em;
+}
+
+.smallfield {
+  border-radius: 0.3em;
+  border: 1px solid var(--bg-medium);
+  background-color: var(--bg-light);
+  padding: 0.5em;
+  margin-bottom: 1em;
+  margin-top: -1em;
+}
+
+nav .field {
+  border: 1px solid var(--color-primary);
+}
+
+.nav .field:hover {
+  background-color: var(--color-primary);
 }
 
 label {
@@ -183,7 +230,8 @@ textarea {
 }
 
 .card {
-  width: 300px;
+  /* width: 300px; */
+  width: clamp(300px, 100%, 800px);
   /* margin-bottom: 10px; */
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.3em;
@@ -222,7 +270,7 @@ a .card {
   width: 50px;
   height: 50px;
   background-color: var(--color-primary);
-  color: white;
+  color: var(--bg-light);
   border-radius: 25px;
   display: flex;
   justify-content: center;
@@ -245,8 +293,7 @@ a .card {
   column-gap: 1em;
 }
 
-.toast-message {
-}
+.toast-message {}
 
 .toast-close {
   border: 1px solid rgb(0, 0, 0);
@@ -256,54 +303,55 @@ a .card {
 
 .toast-close:hover {
   background-color: rgba(176, 91, 91, 1);
-  color: white;
+  color: var(--bg-light);
 }
 
 fieldset {
   border: 1px solid grey;
   border-radius: 0.3em;
-
   margin-bottom: 1em;
 }
 
 #commentaires {
+  margin-top: -2.65em;
   margin-left: 2em;
   padding: 0 1em;
 }
 
-details {
+details {}
 
-}
-
-#commentaires details{
-background-color: white;
+#commentaires details {
+  background-color: var(--bg-light);
 }
 
 legend {
   border: 1px solid grey;
   border-radius: 0.3em;
   padding: 1em;
-  background-color: var(--color-primary);
-  color: white;
+  background-color: var(--bg-medium);
+  color: var(--color-tertiary);
   margin-bottom: 0.5em;
 }
 
-.commentaire {
+.commentaire,
+.post {
   display: flex;
   flex-grow: 1;
   align-items: flex-start;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.comment-message {
+.comment-message,
+.post-message {
   flex-grow: 1;
+  margin-bottom: 1em;
 }
 
-.comment-extra {
-  background-color: white;
-  padding: 0.5em;
-  /* padding: 0.5em 0.5em 0.5em 0; */
-  overflow: hidden;
+.commentaire form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .comment-author {
@@ -322,7 +370,7 @@ legend {
   color: var(--color-primary);
 }
 
-details > summary {
+details>summary {
   list-style: none;
 }
 
@@ -330,18 +378,44 @@ details > summary {
   display: none;
 }
 
+.lien {
+  margin-bottom: 1em;
+}
+
+.fa-container {
+  color: var(--color-primary);
+}
+
+.fa-container:hover {
+  background-color: var(--color-primary);
+  color: var(--bg-light);
+}
+
+[data-liked="true"] {
+  background-color: var(--color-primary);
+  color: var(--bg-light);
+}
+
+#like-list {
+ display: none;
+ background-color: var(--color-primary);
+ color: var(--bg-light);
+ margin-top: 0.5em;
+}
+
+
+#like-wrapper:hover #like-list, #like-wrapper:focus #like-list  {
+  display: block;
+  position: absolute;
+ }
 @media screen and (min-width: 900px) {
   .card {
-    width: 800px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
 
-  .card-footer {
-    flex-direction: column;
-  }
 }
 
 

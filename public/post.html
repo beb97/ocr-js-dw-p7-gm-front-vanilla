@@ -42,24 +42,51 @@
             </template>
         </div>
 
-        <fieldset>
-            <legend id="titre">
+        <fieldset data-is-editing="false">
+            <legend>
+                <div id="titre" data-hidden-when="editing"></div>
+                <input id="titre-input" class="hidden" name="titre" data-hidden-when="not-editing" />
             </legend>
-            <div class="field" id="message"> </div>
+
+            <div class="post">
+                <div class="field post-message" id="post" data-hidden-when="editing"> </div>
+
+                <div class="field post-message-wrapper hidden" data-hidden-when="not-editing">
+                    <form id="post-form">
+                        <textarea rows="5" cols="1" class="" id="post-input" name="message"></textarea>
+                        <input id="post-submit" type="submit" />
+                    </form>
+                </div>
+                <span class="smallfield fa-container" id="like-wrapper" data-liked title="hello">
+                    <i class="fas fa-thumbs-up" data-hidden-when="already-liked"></i>
+                    <span id="like-count">3</span>
+                    <div class="field" id="like-list"></div>
+                </span>
+                <!-- <span class="smallfield fa-container" id="like-wrapper2"> 
+                    <i class="fas fa-thumbs-up" data-hidden-when="not-liked"></i> 
+                </span> -->
+                <div class="smallfield fa-container post-edit" id="" data-hidden-when="not-owner"> <i
+                        class="fas fa-edit"></i>
+                </div>
+                <div class="smallfield fa-container post-delete" id="" data-hidden-when="not-owner"> <i
+                        class="fas fa-trash-alt"></i> </div>
+            </div>
+
             <div id="extra">
-                <a href="user.html"><span id="author">hello</span></a>
+
+                <a href="user.html" id="author">author</a>
                 <span id="date">hello</span>
             </div>
         </fieldset>
 
         <fieldset id="commentaires">
             <legend><span class="comment-count"></span> commentaires</legend>
-            <form>
+            <form id="comment-form">
                 <details class="field">
                     <summary class="comment-add"><i class="fas fa-plus-circle"></i> Ajouter un commentaire
                     </summary>
-                    <textarea rows="2" cols="1" class="" id="new-commentaire" value="commentaire"
-                        name="message"></textarea>
+                    <textarea rows="2" cols="1" class="" id="new-commentaire" value="commentaire" name="message"
+                        required></textarea>
                     <input type="hidden" name="postId" id="postId" />
                     <br />
                     <input type="submit" class="btn" value="Envoyer" />
@@ -67,14 +94,28 @@
             </form>
             <template id="commentaire">
                 <div class="commentaire">
-                <!-- <div class="field"> -->
+                    <!-- <div class="field"> -->
                     <div class="field comment-message">commentaire </div>
+                    <div class="field hidden comment-message-input-wrapper">
+                        <!-- <input type="texte" class="comment-message-input" value="" /> -->
+                        <form>
+                            <textarea rows="2" cols="1" class="comment-message-input" value="commentaire" name="message"
+                                disabled required></textarea>
+                            <input type="submit" />
+                        </form>
+                    </div>
                     <!-- </div> -->
-                    <div class="field comment-extra">
-                        <a href="user.html"><span class="comment-author">auth</span></a>, 
+                    <div class="smallfield comment-extra">
+                        <a href="user.html"><span class="comment-author">auth</span></a>,
                         <span class="comment-date"> date </span>
                     </div>
-            </div>
+
+                    <span class="smallfield fa-container comment-edit" data-hidden-when="not-owner"> <i
+                            class="fas fa-edit"></i> </span>
+                    <span class="smallfield fa-container comment-delete" data-hidden-when="not-owner"> <i
+                            class="fas fa-trash-alt"></i> </span>
+
+                </div>
             </template>
         </fieldset>
 

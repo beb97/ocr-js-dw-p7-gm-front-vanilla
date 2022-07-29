@@ -3,9 +3,10 @@
 <nav>
     <ul class="nav">
         <!-- <li data-hidden-when="logedoff"> <a href="new-post.html" class="nav-link"><i class="fas "></i> Posts</a> </li> -->
-        <li data-hidden-when="logedin"> <a href="login.html" class="nav-link"><i class="fa fa-letter"></i> Connexion</a> </li>
-        <li data-hidden-when="logedin"> <a href="signup.html" class="nav-link"><i class="fa fa-letter"></i> Inscription</a> </li>
-        <li data-hidden-when="logedoff"> <a href="user.html" class="nav-link" > <span id="avatar">P</span></a></li>
-        <li data-hidden-when="logedoff"> <a onclick="logout()" class="nav-link"><i class="fa fa-letter"></i> Déconnexion</a> </li>
+        <li data-hidden-when="logedin" class="field"> <a href="login.html" class="nav-link"><i class="fa fa-letter"></i> Connexion</a> </li>
+        <li data-hidden-when="logedin" class="field"> <a href="signup.html" class="nav-link"><i class="fa fa-letter"></i> Inscription</a> </li>
+        <li data-hidden-when="logedoff" class="field"> <a onclick="logout()" class="nav-link"><i class="fa fa-letter"></i> Déconnexion</a> </li>
+        <li data-hidden-when="logedoff" class="field"> <a href="user.html" class="nav-link" id="nav-user"> <span id="avatar">P</span></a></li>
+        <!-- <li data-hidden-when="logedoff" class="field"> <a href="user.html" class="nav-link" id="nav-user">Profil</a></li> -->
     </ul>
 </nav>
