@@ -9,11 +9,13 @@ const urlApiUser = urlApi + "/user/";
 const urlApiUserLogin = urlApiUser + "login";
 const urlApiUserSignup = urlApiUser + "signup";
 
-let user;
-let token
+let user = undefined;
+let token = undefined;
 if(localStorage.getItem('user')) {
   user = JSON.parse(localStorage.getItem('user'));
-  token = user.token;
+}
+if(localStorage.getItem('token')) {
+  token = localStorage.getItem('token');
 }
 
 (() => {
@@ -52,6 +54,7 @@ function isOwner(userId) {
 function logout() {
   localStorage.removeItem("user");
   localStorage.removeItem("expires");
+  localStorage.removeItem("token");
   window.location.href = "login.html";
 }
 

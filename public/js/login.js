@@ -34,13 +34,8 @@
             console.log(json);
             displayToast({message:"login ok"});
             localStorage.setItem("expires", json.expires)
-            let user = {
-                token : json.token,
-                pseudo : json.pseudo,
-                id : json.id,
-                isAdmin : json.isAdmin
-            }
-            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("token", json.token)
+            localStorage.setItem("user", JSON.stringify(json.user));
 
             // debugger
             window.location.href = "index.html";
