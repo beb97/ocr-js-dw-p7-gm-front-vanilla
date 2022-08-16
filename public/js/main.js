@@ -6,40 +6,51 @@ const urlApiComment = urlApi + "/comment/";
 const urlApiLike = urlApi + "/like/";
 
 const urlApiUser = urlApi + "/user/";
-const urlApiUserLogin = urlApiUser + "login";
-const urlApiUserSignup = urlApiUser + "signup";
+const urlApiAuth = urlApi + "/auth/";
+const urlApiUserLogin = urlApiAuth + "login";
+const urlApiUserSignup = urlApiAuth + "signup";
 
 let user = undefined;
 let token = undefined;
-if(localStorage.getItem('user')) {
-  user = JSON.parse(localStorage.getItem('user'));
+if (localStorage.getItem("user")) {
+  user = JSON.parse(localStorage.getItem("user"));
 }
-if(localStorage.getItem('token')) {
-  token = localStorage.getItem('token');
+if (localStorage.getItem("token")) {
+  token = localStorage.getItem("token");
 }
 
 (() => {
-
-  fetch('nav.html')
-    .then(res => res.text())
-    .then(text => {
+  fetch("nav.html")
+    .then((res) => res.text())
+    .then((text) => {
       let anchor = document.querySelector("header");
       anchor.innerHTML = text;
-      if(isLoggedIn()) {
-        document.querySelector("#avatar").innerHTML = user.pseudo.substring(0, 1);
+      if (isLoggedIn()) {
+        document.querySelector("#avatar").innerHTML = user.pseudo.substring(
+          0,
+          1
+        );
         document.querySelector("#avatar").setAttribute("title", user.pseudo);
         const userLink = "/user.html?id=" + user.id;
         document.querySelector("#nav-user").setAttribute("href", userLink);
       }
 
-      document.querySelectorAll("[data-hidden-when=logedin]").forEach(element => {
-        if (isLoggedIn()) { element.classList.add("hidden") };
-      })
-      document.querySelectorAll("[data-hidden-when=logedoff]").forEach(element => {
-        if (!isLoggedIn()) { element.classList.add("hidden") };
-      })
-    })
-})()
+      document
+        .querySelectorAll("[data-hidden-when=logedin]")
+        .forEach((element) => {
+          if (isLoggedIn()) {
+            element.classList.add("hidden");
+          }
+        });
+      document
+        .querySelectorAll("[data-hidden-when=logedoff]")
+        .forEach((element) => {
+          if (!isLoggedIn()) {
+            element.classList.add("hidden");
+          }
+        });
+    });
+})();
 
 function isLoggedIn() {
   return user ? true : false;
@@ -47,7 +58,7 @@ function isLoggedIn() {
 
 function isOwner(userId) {
   if (!isLoggedIn) return false;
-  if(user.isAdmin) return true;
+  if (user.isAdmin) return true;
   return user.id == userId;
 }
 
@@ -72,23 +83,22 @@ function checkIfLogged() {
     // window.location.href = "login.html";
     displayToast({
       message: "Vous n'êtes pas connecté",
-      url: "<a href='login.html'>connectez-vous</a>"
+      url: "<a href='login.html'>connectez-vous</a>",
     });
   } else if (isExpired(new Date(expires))) {
     // window.location.href = "login.html";
     displayToast({
       message: "Vous n'êtes plus connecté",
-      url: "<a href='login.html'>connectez-vous</a>"
+      url: "<a href='login.html'>connectez-vous</a>",
     });
   }
 }
 
 function getDateFr(date) {
-  return new Date(date).toLocaleDateString("fr")
+  return new Date(date).toLocaleDateString("fr");
 }
 
 function timeSince(date) {
-
   const seconds = Math.floor((new Date() - date) / 1000);
   const ilya = "";
   const fin = "";
@@ -98,9 +108,9 @@ function timeSince(date) {
   if (interval > 1) {
     return "en " + new Date(date).getFullYear();
   }
-  interval = (seconds / (60 * 60 * 24 * 30));
+  interval = seconds / (60 * 60 * 24 * 30);
   if (interval > 1) {
-    return "en " + new Date(date).toLocaleString('default', { month: 'long' });;
+    return "en " + new Date(date).toLocaleString("default", { month: "long" });
     //   return "en " + Math.floor(interval) + " mois";
   }
   interval = seconds / (60 * 60 * 24);
@@ -111,7 +121,7 @@ function timeSince(date) {
   if (interval > 1) {
     return ilya + Math.floor(interval) + " heures" + fin;
   }
-  interval = seconds / (60);
+  interval = seconds / 60;
   if (interval > 1) {
     return ilya + Math.floor(interval) + " minutes" + fin;
   }
@@ -142,5 +152,4 @@ function closeToast(e) {
   setTimeout(function () {
     e.target.closest(".toast").remove();
   }, 500);
-
 }
